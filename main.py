@@ -117,14 +117,14 @@ def get_last_commit():
 def generate_dot(filename):
     """Создать DOT-файл для графа зависимостей"""
 
-    def recursive_write(file, tree):
+    def recursive_write(file, tree, st):
         """Рекурсивно перебрать все узлы дерева для построения связей графа"""
         if tree and 'label' in tree:  # Проверяем наличие ключа 'label'
             label = tree['label']
             for child in tree['children']:
                 if child and 'label' in child:  # Проверяем наличие ключа 'label' у потомка
-                    file.write(f'    "{label}" -> "{child["label"]}"\n')
-                    recursive_write(file, child)
+                    st.add(f'"{label}" -> "{child["label"]}"')
+                    recursive_write(file, child, st)
 
 
     # Стартовая точка репозитория - последний коммит главной ветки
@@ -135,7 +135,10 @@ def generate_dot(filename):
     with open(filename, 'w') as file:
         file.write('digraph G {\n')
         if tree:
-            recursive_write(file, tree)
+            st = set()
+            recursive_write(file, tree, st)
+            for i in st:
+                file.write(f'    {i}\n')
         file.write('}')
 
 
