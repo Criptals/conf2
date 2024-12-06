@@ -20,5 +20,6 @@
 
 Работа программы была протестирована на большом репозитории (репозиторий ведется больше 2 лет)
 
-![image](https://github.com/user-attachments/assets/634a555f-89ac-439b-b422-e63b0bfa6e82)
+
+![image](https://github.com/user-attachments/assets/21ea009d-011c-4edd-b2f1-2f27ed6a6049)
 
